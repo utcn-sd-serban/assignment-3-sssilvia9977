@@ -1,0 +1,29 @@
+
+
+
+pm.test("Verify Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("Created");
+});
+
+pm.test("Number of user: five", function(){
+   var users = pm.response.json();
+   pm.expect(users.length).to.be.equal(5);
+});
+
+
+
+pm.test("Find time question", function(){
+    var questions = pm.response.json();
+    var result = 0;
+    for(var i = 0; i < questions.length; i++)
+    {
+        if(questions[i].title.includes("ce ora este?"))
+        {
+            result++;
+        }
+    }
+    pm.expect(result).to.be.equal(1);
+});
